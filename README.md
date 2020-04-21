@@ -15,7 +15,7 @@ With this Sudoku application you can
 * Highlight the error you have made
 
 <img src="screenshots/little-marks.png" width="200"/>
-<img src="screenshots/error-Highlighting.png" width="200"/>
+<img src="screenshots/error-highlighting.png" width="200"/>
 
 ## Keyboard shortcuts
 
