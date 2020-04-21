@@ -1,0 +1,966 @@
+.newGame {
+    -fx-font-size: 30;
+    -fx-cursor: hand;
+}
+.others ToggleButton, .others Button, .numbers Button,
+.sudokuGrid .sudokuNumber {
+    -fx-background-color: transparent;
+    -fx-font-size: 15;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+    -fx-cursor: hand;
+}
+
+.sudokuGrid .sudokuMiniGrid .sudokuMarks {
+    -fx-cursor: hand;
+}
+
+.numbers Button {
+    -fx-font-size: 40;
+    -fx-cursor: hand;
+}
+
+.sudokuGrid .sudokuNumber {
+    -fx-font-size: 30;
+}
+
+.sudokuGrid Line {
+    -fx-stroke-width: 3;
+}
+
+.sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke-width: 1;
+}
+
+.settings ComboBox {
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+.sudokuGrid .sudokuMiniGrid Label:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+.sudokuGrid .sudokuMiniGrid Label.error {
+    -fx-background-color: red;
+    -fx-text-fill: black !important;
+}
+
+.root[class^="light"] #toggleError {
+    -fx-border-radius: 5;
+    -fx-font-size: 10;
+
+}
+
+#toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, #666 70%, #666 100%);
+    -fx-alignment: CENTER_RIGHT;
+    -fx-padding: 0 10 0 0;
+    -fx-font-weight: 700;
+    -fx-border-color: #777;
+    -fx-border-radius: 5;
+}
+
+#toggleError:selected {
+    -fx-background-color: linear-gradient(to right, transparent 0%, transparent 70%, #666 70%, #666 100%);
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 10;
+}
+
+.dialog > *.button-bar > *.container > Button{
+    -fx-border-radius: 5;
+}
+.dialog, .dialog *.header-panel,
+.dialog *.header-panel *.label,
+.dialog > *.button-bar > *.container > Button {
+    -fx-font-size: 15;
+}
+
+/*
+    ***************************************************************
+    **********************   LIGHT BLUE    ************************
+    ***************************************************************
+*/
+
+.light-blue #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(31, 143, 232) 70%, rgb(31, 143, 232) 100%);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-blue #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(31, 143, 232,0.15) 0%, rgba(31, 143, 232, 0.15) 70%, rgb(31, 143, 232) 70%, rgb(31, 143, 232) 100%);
+}
+
+.light-blue .newGame {
+    -fx-background-color: rgb(31, 143, 232);
+    -fx-text-fill: white;
+}
+
+.light-blue .newGame:pressed {
+    -fx-background-color: rgb(19, 110, 185);
+}
+
+.light-blue .sudokuGrid .sudokuMarks Label {
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-blue .others ToggleButton, .light-blue .others Button, .light-blue .numbers Button,
+.light-blue .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(44, 62, 80);
+    -fx-border-color: rgb(190, 198, 212);
+}
+
+.light-blue .numbers Button:hover, .light-blue .others Button:hover,
+.light-blue .others ToggleButton:hover {
+    -fx-background-color: rgba(31, 143, 232, 0.1);
+}
+
+.light-blue .numbers Button:pressed, .light-blue .others Button:pressed,
+.light-blue .others ToggleButton:pressed, .light-blue .others ToggleButton:selected {
+    -fx-background-color: rgba(19, 110, 185, 0.2);
+}
+
+.light-blue .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(31, 143, 232, 0.1);
+}
+
+.light-blue .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(19, 110, 185, 0.2);
+}
+
+.light-blue .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgb(190, 198, 212);
+}
+
+.light-blue .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: rgb(19, 110, 185);
+    -fx-background-color: rgba(19, 110, 185, 0.15);
+}
+
+.light-blue.dialog, .light-blue.dialog *.header-panel,
+.light-blue.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(190, 198, 212);
+}
+
+.light-blue.dialog, .light-blue.dialog *.header-panel,
+.light-blue.dialog *.header-panel *.label,
+.light-blue.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-blue.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(31, 143, 232, 0.1);
+}
+
+/*
+    ***************************************************************
+    **********************   LIGHT GREEN    ***********************
+    ***************************************************************
+*/
+
+.light-green #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(33, 232, 33) 70%, rgb(33, 232, 33) 100%);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-green #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(33, 232, 33,0.15) 0%, rgba(33, 232, 33, 0.15) 70%, rgb(33, 232, 33) 70%, rgb(33, 232, 33) 100%);
+}
+
+.light-green .newGame {
+    -fx-background-color: rgb(33, 232, 33);
+    -fx-text-fill: white;
+}
+
+.light-green .newGame:pressed {
+    -fx-background-color: rgb(19, 185, 19);
+}
+
+.light-green .sudokuGrid .sudokuMarks Label {
+    -fx-text-fill: rgb(43, 79, 43);
+}
+
+.light-green .others ToggleButton, .light-green .others Button, .light-green .numbers Button,
+.light-green .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(43, 79, 43);
+    -fx-border-color: rgb(191, 212, 191);
+}
+
+.light-green .numbers Button:hover, .light-green .others Button:hover,
+.light-green .others ToggleButton:hover {
+    -fx-background-color: rgba(33, 232, 33, 0.1);
+}
+
+.light-green .numbers Button:pressed, .light-green .others Button:pressed,
+.light-green .others ToggleButton:pressed, .light-green .others ToggleButton:selected {
+    -fx-background-color: rgba(19, 185, 19, 0.2);
+}
+
+.light-green .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(33, 232, 33, 0.1);
+}
+
+.light-green .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(19, 185, 19, 0.2);
+}
+
+.light-green .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgb(191, 212, 191);
+}
+
+.light-green .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: rgb(19, 185, 19);
+    -fx-background-color: rgba(19, 185, 19, 0.15);
+}
+
+.light-red .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: rgb(185, 19, 19);
+    -fx-background-color: rgba(185, 19, 19, 0.15);
+}
+
+.light-green.dialog, .light-green.dialog *.header-panel,
+.light-green.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(191, 212, 191);
+}
+
+.light-green.dialog, .light-green.dialog *.header-panel,
+.light-green.dialog *.header-panel *.label,
+.light-green.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: rgb(43, 79, 43);
+}
+
+.light-green.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(33, 232, 33, 0.1);
+}
+
+/*
+    ***************************************************************
+    **********************   LIGHT RED    *************************
+    ***************************************************************
+*/
+
+.light-red #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 33, 33) 70%, rgb(232, 33, 33) 100%);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-red #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(232, 33, 33,0.15) 0%, rgba(232, 33, 33, 0.15) 70%, rgb(232, 33, 33) 70%, rgb(232, 33, 33) 100%);
+}
+
+.light-red .newGame {
+    -fx-background-color: rgb(232, 33, 33);
+    -fx-text-fill: white;
+}
+
+.light-red .newGame:pressed {
+    -fx-background-color: rgb(185, 19, 19);
+}
+
+.light-red .sudokuGrid .sudokuMarks Label {
+     -fx-text-fill: rgb(79, 43, 43);
+}
+
+.light-red .others ToggleButton, .light-red .others Button, .light-red .numbers Button,
+.light-red .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(79, 43, 43);
+    -fx-border-color: rgb(212, 191, 191);
+}
+
+.light-red .numbers Button:hover, .light-red .others Button:hover,
+.light-red .others ToggleButton:hover {
+    -fx-background-color: rgba(232, 33, 33, 0.1);
+}
+
+.light-red .numbers Button:pressed, .light-red .others Button:pressed,
+.light-red .others ToggleButton:pressed, .light-red .others ToggleButton:selected {
+    -fx-background-color: rgba(185, 19, 19, 0.2);
+}
+
+.light-red .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(232, 33, 33, 0.1);
+}
+
+.light-red .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(185, 19, 19, 0.2);
+}
+
+.light-red .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgb(212, 191, 191);
+}
+
+.light-red .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: rgb(185, 19, 19);
+    -fx-background-color: rgba(185, 19, 19, 0.15);
+}
+
+.light-red.dialog, .light-red.dialog *.header-panel,
+.light-red.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(212, 191, 191);
+}
+
+.light-red.dialog, .light-red.dialog *.header-panel,
+.light-red.dialog *.header-panel *.label,
+.light-red.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: rgb(79, 43, 43);
+}
+
+.light-red.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(232, 33, 33, 0.1);
+}
+
+/*
+    ***************************************************************
+    ********************   LIGHT ORANGE    ************************
+    ***************************************************************
+*/
+
+.light-orange #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 133, 33) 70%, rgb(232, 133, 33) 100%);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-orange #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(232, 133, 33,0.15) 0%, rgba(232, 133, 33, 0.15) 70%, rgb(232, 133, 33) 70%, rgb(232, 133, 33) 100%);
+}
+
+.light-orange .newGame {
+    -fx-background-color: rgb(232, 133, 33);
+    -fx-text-fill: white;
+}
+
+.light-orange .newGame:pressed {
+    -fx-background-color: rgb(185, 102, 19);
+}
+
+.light-orange .sudokuGrid .sudokuMarks Label {
+    -fx-text-fill: rgb(79, 61, 43);
+}
+
+.light-orange .others ToggleButton, .light-orange .others Button, .light-orange .numbers Button,
+.light-orange .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(79, 61, 43);
+    -fx-border-color: rgb(212, 201, 191);
+}
+
+.light-orange .numbers Button:hover, .light-orange .others Button:hover,
+.light-orange .others ToggleButton:hover {
+    -fx-background-color: rgba(232, 133, 33, 0.1);
+}
+
+.light-orange .numbers Button:pressed, .light-orange .others Button:pressed,
+.light-orange .others ToggleButton:pressed, .light-orange .others ToggleButton:selected {
+    -fx-background-color: rgba(185, 102, 19, 0.2);
+}
+
+.light-orange .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(232, 133, 33, 0.1);
+}
+
+.light-orange .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(185, 102, 19, 0.2);
+}
+
+.light-orange .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgb(212, 201, 191);
+}
+
+.light-orange .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: rgb(185, 102, 19);
+    -fx-background-color: rgba(185, 102, 19, 0.15);
+}
+
+.light-orange.dialog, .light-orange.dialog *.header-panel,
+.light-orange.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(212, 201, 191);
+}
+
+.light-orange.dialog, .light-orange.dialog *.header-panel,
+.light-orange.dialog *.header-panel *.label,
+.light-orange.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: rgb(79, 61, 43);
+}
+
+.light-orange.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(232, 133, 33, 0.1);
+}
+
+/*
+    ***************************************************************
+    *********************   LIGHT PINK    *************************
+    ***************************************************************
+*/
+
+.light-pink #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 33, 182) 70%, rgb(232, 33, 182) 100%);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-pink #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(232, 33, 182,0.15) 0%, rgba(232, 33, 182, 0.15) 70%, rgb(232, 33, 182) 70%, rgb(232, 33, 182) 100%);
+}
+
+.light-pink .newGame {
+    -fx-background-color: rgb(232, 33, 182);
+    -fx-text-fill: white;
+}
+.light-pink .newGame:pressed {
+    -fx-background-color: rgb(185, 19, 143);
+}
+
+.light-pink .sudokuGrid .sudokuMarks Label {
+    -fx-text-fill: rgb(79, 43, 70);
+}
+
+.light-pink .others ToggleButton, .light-pink .others Button, .light-pink .numbers Button,
+.light-pink .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(79, 43, 70);
+    -fx-border-color: rgb(212, 191, 207);
+}
+
+.light-pink .numbers Button:hover, .light-pink .others Button:hover,
+.light-pink .others ToggleButton:hover {
+    -fx-background-color: rgba(232, 33, 182, 0.1);
+}
+
+.light-pink .numbers Button:pressed, .light-pink .others Button:pressed,
+.light-pink .others ToggleButton:pressed, .light-pink .others ToggleButton:selected {
+    -fx-background-color: rgba(185, 19, 143, 0.2);
+}
+
+.light-pink .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(232, 33, 182, 0.1);
+}
+
+.light-pink .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(185, 19, 143, 0.2);
+}
+
+.light-pink .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgb(212, 191, 207);
+}
+
+.light-pink .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: rgb(185, 19, 143);
+    -fx-background-color: rgba(185, 19, 143, 0.15);
+}
+
+.light-pink.dialog, .light-pink.dialog *.header-panel,
+.light-pink.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(212, 191, 207);
+}
+
+.light-pink.dialog, .light-pink.dialog *.header-panel,
+.light-pink.dialog *.header-panel *.label,
+.light-pink.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #FFF;
+    -fx-text-fill: rgb(79, 43, 70);
+}
+
+.light-pink.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(232, 33, 182, 0.1);
+}
+
+/*
+    ***************************************************************
+    **********************   DARK BLUE    *************************
+    ***************************************************************
+*/
+
+.dark-blue {
+    -fx-background-color: rgb(51, 51, 51);
+}
+
+.dark-blue .sudokuGrid Line {
+    -fx-stroke: white;
+}
+
+.dark-blue .settings Label, .dark-blue .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(93, 173, 238);
+}
+.dark-blue .settings ComboBox .list-view .list-cell {
+    -fx-background-color: rgb(51,51,51);
+}
+.dark-blue .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(19, 110, 185);
+    -fx-text-fill: white;
+}
+
+.dark-blue .settings ComboBox {
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(190, 198, 212);
+}
+
+.dark-blue #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(31, 143, 232) 70%, rgb(31, 143, 232) 100%);
+    -fx-text-fill: rgb(93, 173, 238);
+}
+
+.dark-blue #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(31, 143, 232,0.15) 0%, rgba(31, 143, 232, 0.15) 70%, rgb(31, 143, 232) 70%, rgb(31, 143, 232) 100%);
+}
+
+.dark-blue .newGame {
+    -fx-background-color: rgb(31, 143, 232);
+    -fx-text-fill: white;
+}
+.dark-blue .newGame:pressed {
+    -fx-background-color: rgb(19, 110, 185);
+}
+
+.dark-blue .sudokuGrid .sudokuMarks Label {
+     -fx-text-fill: rgb(93, 173, 238);
+}
+
+.dark-blue .others ToggleButton, .dark-blue .others Button, .dark-blue .numbers Button,
+.dark-blue .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(93, 173, 238);
+    -fx-border-color: rgb(190, 198, 212);
+}
+
+.dark-blue .numbers Button:hover, .dark-blue .others Button:hover,
+.dark-blue .others ToggleButton:hover {
+    -fx-background-color: rgba(31, 143, 232, 0.1);
+}
+
+.dark-blue .numbers Button:pressed, .dark-blue .others Button:pressed,
+.dark-blue .others ToggleButton:pressed, .dark-blue .others ToggleButton:selected {
+    -fx-background-color: rgba(93, 173, 238, 0.2);
+}
+
+.dark-blue .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(31, 143, 232, 0.1);
+}
+
+.dark-blue .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(93, 173, 238, 0.2);
+}
+
+.dark-blue .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgba(19, 110, 185, 0.6);
+}
+
+.dark-blue .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(19, 110, 185, 0.15);
+}
+
+.dark-blue.dialog, .dark-blue.dialog *.header-panel,
+.dark-blue.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(190, 198, 212);
+}
+
+.dark-blue.dialog, .dark-blue.dialog *.header-panel,
+.dark-blue.dialog *.header-panel *.label,
+.dark-blue.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #333;
+    -fx-text-fill: rgb(93, 173, 238);
+}
+
+.dark-blue.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(31, 143, 232, 0.1);
+}
+
+/*
+    ***************************************************************
+    **********************   DARK GREEN    ************************
+    ***************************************************************
+*/
+
+.dark-green {
+    -fx-background-color: rgb(51, 51, 51);
+}
+
+.dark-green .sudokuGrid Line {
+    -fx-stroke: white;
+}
+
+.dark-green .settings Label, .dark-green .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(94, 237, 94);
+}
+.dark-green .settings ComboBox .list-view .list-cell {
+    -fx-background-color: rgb(51,51,51);
+}
+.dark-green .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(19, 185, 19);
+    -fx-text-fill: white;
+}
+
+.dark-green .settings ComboBox {
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(191, 212, 191);
+}
+
+.dark-green #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(33, 232, 33) 70%, rgb(33, 232, 33) 100%);
+    -fx-text-fill: rgb(94, 237, 94);
+}
+
+.dark-green #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(33, 232, 33,0.15) 0%, rgba(33, 232, 33, 0.15) 70%, rgb(33, 232, 33) 70%, rgb(33, 232, 33) 100%);
+}
+
+.dark-green .newGame {
+    -fx-background-color: rgb(33, 232, 33);
+    -fx-text-fill: white;
+}
+.dark-green .newGame:pressed {
+    -fx-background-color: rgb(19, 185, 19);
+}
+
+.dark-green .sudokuGrid .sudokuMarks Label {
+    -fx-text-fill: rgb(94, 237, 94);
+}
+
+.dark-green .others ToggleButton, .dark-green .others Button, .dark-green .numbers Button,
+.dark-green .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(94, 237, 94);
+    -fx-border-color: rgb(191, 212, 191);
+}
+
+.dark-green .numbers Button:hover, .dark-green .others Button:hover,
+.dark-green .others ToggleButton:hover {
+    -fx-background-color: rgba(33, 232, 33, 0.1);
+}
+
+.dark-green .numbers Button:pressed, .dark-green .others Button:pressed,
+.dark-green .others ToggleButton:pressed, .dark-green .others ToggleButton:selected {
+    -fx-background-color: rgba(94, 237, 94, 0.2);
+}
+
+.dark-green .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(33, 232, 33, 0.1);
+}
+
+.dark-green .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(94, 237, 94, 0.2);
+}
+
+.dark-green .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgb(191, 212, 191);
+}
+
+.dark-green .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(19, 185, 19, 0.15);
+}
+
+.dark-green.dialog, .dark-green.dialog *.header-panel,
+.dark-green.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(191, 212, 191);
+}
+
+.dark-green.dialog, .dark-green.dialog *.header-panel,
+.dark-green.dialog *.header-panel *.label,
+.dark-green.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #333;
+    -fx-text-fill: rgb(94, 237, 94);
+}
+
+.dark-green.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(33, 232, 33, 0.1);
+}
+
+/*
+    ***************************************************************
+    **********************   DARK RED    **************************
+    ***************************************************************
+*/
+
+.dark-red {
+    -fx-background-color: rgb(51, 51, 51);
+}
+
+.dark-red .sudokuGrid Line {
+    -fx-stroke: white;
+}
+
+.dark-red .settings Label, .dark-red .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(238, 93, 93);
+}
+.dark-red .settings ComboBox .list-view .list-cell {
+    -fx-background-color: rgb(51,51,51);
+}
+.dark-red .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(185, 19, 19);
+    -fx-text-fill: white;
+}
+
+.dark-red .settings ComboBox {
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(190, 198, 212);
+}
+
+.dark-red #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 33, 33) 70%, rgb(232, 33, 33) 100%);
+    -fx-text-fill: rgb(238, 93, 93);
+}
+
+.dark-red #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(232, 33, 33,0.15) 0%, rgba(232, 33, 33, 0.15) 70%, rgb(232, 33, 33) 70%, rgb(232, 33, 33) 100%);
+}
+
+.dark-red .newGame {
+    -fx-background-color: rgb(232, 33, 33);
+    -fx-text-fill: white;
+}
+.dark-red .newGame:pressed {
+    -fx-background-color: rgb(185, 19, 19);
+}
+
+.dark-red .sudokuGrid .sudokuMarks Label {
+    -fx-text-fill: rgb(238, 93, 93);
+}
+
+.dark-red .others ToggleButton, .dark-red .others Button, .dark-red .numbers Button,
+.dark-red .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(238, 93, 93);
+    -fx-border-color: rgb(212, 191, 191);
+}
+
+.dark-red .numbers Button:hover, .dark-red .others Button:hover,
+.dark-red .others ToggleButton:hover {
+    -fx-background-color: rgba(232, 33, 33, 0.1);
+}
+
+.dark-red .numbers Button:pressed, .dark-red .others Button:pressed,
+.dark-red .others ToggleButton:pressed, .dark-red .others ToggleButton:selected {
+    -fx-background-color: rgba(238, 93, 93, 0.2);
+}
+
+.dark-red .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(232, 33, 33, 0.1);
+}
+
+.dark-red .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(238, 93, 93, 0.2);
+}
+
+.dark-red .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgba(185, 19, 19, 0.6);
+}
+
+.dark-red .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(185, 19, 19, 0.15);
+}
+
+.dark-red.dialog, .dark-red.dialog *.header-panel,
+.dark-red.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(212, 191, 191);
+}
+
+.dark-red.dialog, .dark-red.dialog *.header-panel,
+.dark-red.dialog *.header-panel *.label,
+.dark-red.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #333;
+    -fx-text-fill: rgb(238, 93, 93);
+}
+
+.dark-red.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(232, 33, 33, 0.1);
+}
+
+/*
+    ***************************************************************
+    ********************   DARK ORANGE    *************************
+    ***************************************************************
+*/
+
+.dark-orange {
+    -fx-background-color: rgb(51, 51, 51);
+}
+
+.dark-orange .sudokuGrid Line {
+    -fx-stroke: white;
+}
+
+.dark-orange .settings Label, .dark-orange .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(238, 166, 93);
+}
+.dark-orange .settings ComboBox .list-view .list-cell {
+    -fx-background-color: rgb(51,51,51);
+}
+.dark-orange .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(185, 102, 19);
+    -fx-text-fill: white;
+}
+
+.dark-orange .settings ComboBox {
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(212, 201, 191);
+}
+
+.dark-orange #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 133, 33) 70%, rgb(232, 133, 33) 100%);
+    -fx-text-fill: rgb(238, 166, 93);
+}
+
+.dark-orange #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(232, 133, 33,0.15) 0%, rgba(232, 133, 33, 0.15) 70%, rgb(232, 133, 33) 70%, rgb(232, 133, 33) 100%);
+}
+
+.dark-orange .newGame {
+    -fx-background-color: rgb(232, 133, 33);
+    -fx-text-fill: white;
+}
+.dark-orange .newGame:pressed {
+    -fx-background-color: rgb(185, 102, 19);
+}
+
+.dark-orange .sudokuGrid .sudokuMarks Label {
+    -fx-text-fill: rgb(238, 166, 93);
+}
+
+.dark-orange .others ToggleButton, .dark-orange .others Button, .dark-orange .numbers Button,
+.dark-orange .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(238, 166, 93);
+    -fx-border-color: rgb(212, 201, 191);
+}
+
+.dark-orange .numbers Button:hover, .dark-orange .others Button:hover,
+.dark-orange .others ToggleButton:hover {
+    -fx-background-color: rgba(232, 133, 33, 0.1);
+}
+
+.dark-orange .numbers Button:pressed, .dark-orange .others Button:pressed,
+.dark-orange .others ToggleButton:pressed, .dark-orange .others ToggleButton:selected {
+    -fx-background-color: rgba(185, 102, 19, 0.2);
+}
+
+.dark-orange .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(232, 133, 33, 0.1);
+}
+
+.dark-orange .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(185, 102, 19, 0.2);
+}
+
+.dark-orange .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgba(185, 102, 19, 0.6);
+}
+
+.dark-orange .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(185, 102, 19, 0.15);
+}
+
+.dark-orange.dialog, .dark-orange.dialog *.header-panel,
+.dark-orange.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(212, 201, 191);
+}
+
+.dark-orange.dialog, .dark-orange.dialog *.header-panel,
+.dark-orange.dialog *.header-panel *.label,
+.dark-orange.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #333;
+    -fx-text-fill: rgb(238, 166, 93);
+}
+
+.dark-orange.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(232, 133, 33, 0.1);
+}
+
+/*
+    ***************************************************************
+    *********************   DARK PINK    **************************
+    ***************************************************************
+*/
+
+.dark-pink {
+    -fx-background-color: rgb(51, 51, 51);
+}
+
+.dark-pink .sudokuGrid Line {
+    -fx-stroke: white;
+}
+
+.dark-pink .settings Label, .dark-pink .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(238, 93, 202);
+}
+.dark-pink .settings ComboBox .list-view .list-cell {
+    -fx-background-color: rgb(51,51,51);
+}
+.dark-pink .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(185, 19, 143);
+    -fx-text-fill: white;
+}
+
+.dark-pink .settings ComboBox {
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(212, 191, 207);
+}
+
+.dark-pink #toggleError {
+    -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 33, 182) 70%, rgb(232, 33, 182) 100%);
+    -fx-text-fill: rgb(238, 93, 202);
+}
+
+.dark-pink #toggleError:selected {
+    -fx-background-color: linear-gradient(to right, rgba(232, 33, 182,0.15) 0%, rgba(232, 33, 182, 0.15) 70%, rgb(232, 33, 182) 70%, rgb(232, 33, 182) 100%);
+}
+
+.dark-pink .newGame {
+    -fx-background-color: rgb(232, 33, 182);
+    -fx-text-fill: white;
+}
+.dark-pink .newGame:pressed {
+    -fx-background-color: rgb(185, 19, 143);
+}
+
+.dark-pink .sudokuGrid .sudokuMarks Label {
+     -fx-text-fill: rgb(238, 93, 202);
+}
+
+.dark-pink .others ToggleButton, .dark-pink .others Button, .dark-pink .numbers Button,
+.dark-pink .sudokuGrid .sudokuNumber {
+    -fx-text-fill: rgb(238, 93, 202);
+    -fx-border-color: rgb(212, 191, 207);
+}
+
+.dark-pink .numbers Button:hover, .dark-pink .others Button:hover,
+.dark-pink .others ToggleButton:hover {
+    -fx-background-color: rgba(232, 33, 182, 0.1);
+}
+
+.dark-pink .numbers Button:pressed, .dark-pink .others Button:pressed,
+.dark-pink .others ToggleButton:pressed, .dark-pink .others ToggleButton:selected {
+    -fx-background-color: rgba(185, 19, 143, 0.2);
+}
+
+.dark-pink .sudokuGrid .sudokuNumber:hover {
+    -fx-background-color: rgba(232, 33, 182, 0.1);
+}
+
+.dark-pink .sudokuGrid .sudokuNumber:focused {
+    -fx-background-color: rgba(185, 19, 143, 0.2);
+}
+
+.dark-pink .sudokuGrid .sudokuMiniGrid Line {
+    -fx-stroke: rgba(185, 19, 143, 0.6);
+}
+
+.dark-pink .sudokuGrid .sudokuMiniGrid .selected {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(185, 19, 143, 0.15);
+}
+
+.dark-pink.dialog, .dark-pink.dialog *.header-panel,
+.dark-pink.dialog > *.button-bar > *.container > Button {
+    -fx-border-color: rgb(212, 191, 207);
+}
+
+.dark-pink.dialog, .dark-pink.dialog *.header-panel,
+.dark-pink.dialog *.header-panel *.label,
+.dark-pink.dialog > *.button-bar > *.container > Button {
+    -fx-background-color: #333;
+    -fx-text-fill: rgb(238, 93, 202);
+}
+
+.dark-pink.dialog > *.button-bar > *.container > Button:hover{
+    -fx-background-color: rgba(232, 33, 182, 0.1);
+}
