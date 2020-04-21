@@ -461,13 +461,11 @@ public class MainWindowController implements Initializable {
     private void displaySolution() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                Label cell = this.getCellLabel(i, j);
+                selectedCell = this.getCellLabel(i, j);
                 if (this.board.getSolvedBoard()[i][j] !=0) {
-                    cell.setText(""+this.board.getSolvedBoard()[i][j]);
-                    cell.setDisable(true);
-                } else {
-                    cell.setText("");
-                    cell.setDisable(false);
+                    ((Label)selectedCell).setText(""+this.board.getSolvedBoard()[i][j]);
+                    selectedCell.setDisable(true);
+                    clearMarks();
                 }
             }
         }
@@ -476,9 +474,10 @@ public class MainWindowController implements Initializable {
     private void clearGrid(){
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                Label cell = this.getCellLabel(i, j);
-                cell.setText("");
-                cell.setDisable(false);
+                selectedCell = this.getCellLabel(i, j);
+                ((Label)selectedCell).setText("");
+                selectedCell.setDisable(false);
+                clearMarks();
             }
         }
     }
