@@ -18,13 +18,17 @@ public class GameBoard {
 
     private int nbGridGenerated = 0;
     private int[][] bestBoard;
+    private int[][] solvedBestBoard;
     private int bestBoardDistance = Integer.MAX_VALUE;
 
     public GameBoard(String difficulty) {
         this.difficulty = difficulty;
         board = new int[9][9];
         solvedBoard = new int[9][9];
+        solvedBestBoard = new int[9][9];
         this.generate();
+        this.displayBoard();
+        this.displaySolvedBoard();
     }
 
     public GameBoard(int[][] board){
@@ -82,23 +86,27 @@ public class GameBoard {
         return res;
     }
 
-    public void generate() {
+    public void generate() {        
         if (this.nbGridGenerated < 1000) {
             fillDiagonal();
             fillRemaining(0,3);
-
+            
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
                     this.solvedBoard[i][j] = board[i][j];
                 }
             }
-
+            
             int n = getNumbersToRemove();
             int distance = removeNumbers(n);
 
-
             if (distance> 5) {
                 if (distance < this.bestBoardDistance) {
+                    for (int i = 0; i < 9; i++) {
+                        for (int j = 0; j < 9; j++) {
+                            this.solvedBestBoard[i][j] = solvedBoard[i][j];
+                        }
+                    }
                     this.bestBoard = board;
                     this.bestBoardDistance = distance;
                 }
@@ -106,9 +114,15 @@ public class GameBoard {
                 this.nbGridGenerated++;
                 generate();
             } else {
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        this.solvedBestBoard[i][j] = solvedBoard[i][j];
+                    }
+                }
                 this.bestBoard = board;
-            }
+            }        
         }
+        this.solvedBoard = solvedBestBoard;
         this.board = bestBoard;
     }
 
