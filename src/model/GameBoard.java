@@ -27,8 +27,6 @@ public class GameBoard {
         solvedBoard = new int[9][9];
         solvedBestBoard = new int[9][9];
         this.generate();
-        this.displayBoard();
-        this.displaySolvedBoard();
     }
 
     public GameBoard(int[][] board){
