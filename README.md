@@ -44,7 +44,7 @@ And further more incoming.
 
 The difficulty is purely suggestive and based on the approximative cell number to complete. The more you have, the more difficult the grid is considered.
 
-* Esay
+* Easy
 * Medium
 * Hard
 * Very Hard
