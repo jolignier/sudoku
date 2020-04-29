@@ -21,6 +21,10 @@ public class GameBoard {
     private int[][] solvedBestBoard;
     private int bestBoardDistance = Integer.MAX_VALUE;
 
+    /**
+     * Basic constructor
+     * @param difficulty the difficulty to generate the board with
+     */
     public GameBoard(String difficulty) {
         this.difficulty = difficulty;
         board = new int[9][9];
@@ -29,6 +33,10 @@ public class GameBoard {
         this.generate();
     }
 
+    /**
+     * Copy constructor
+     * @param board the board to copy
+     */
     public GameBoard(int[][] board){
         this.board = new int[9][9];
         for (int i = 0; i < 9; i++) {
@@ -38,10 +46,16 @@ public class GameBoard {
         }
     }
 
+    /**
+     * @return the board
+     */
     public int[][] getBoard() {
         return this.board.clone();
     }
 
+    /**
+     * @return the solved board
+     */
     public int[][] getSolvedBoard() {
         return this.solvedBoard;
     }
@@ -50,14 +64,27 @@ public class GameBoard {
         this.difficulty = difficulty;
     }
 
+    /**
+     * @param row the cell row
+     * @param col the cell column
+     * @return the value of the cell
+     */
     public int getCell(int row, int col){
         return board[row][col];
     }
 
+    /**
+     * @param num the new value of the cell
+     * @param row the cell row
+     * @param col the cell column
+     */
     public void setCell(int num, int row, int col) {
         this.board[row][col] = num;
     }
 
+    /**
+     * @return true if there is no empty cell in the board
+     */
     public boolean isFull() {
         boolean res = true;
         for (int i = 0; i < 9; i++) {
@@ -71,6 +98,9 @@ public class GameBoard {
         return res;
     }
 
+    /**
+     * @return true if the board matches the solvedBoard
+     */
     public boolean isComplete() {
         boolean res = true;
         for (int i = 0; i < 9; i++) {
@@ -84,6 +114,17 @@ public class GameBoard {
         return res;
     }
 
+    /**
+     * Recursive function to generate a Sudoku grid
+     * Principle :
+     *    - We fill the diagnoal miniGrids (3*3 square) because they are totally independants
+     *    - We fill remaining values
+     *    - We get the numbers of value to remove based on the given difficulty
+     *    - If we successfully removed the correct numbers of value (+- 5)
+     *          we are done
+ *        - Else, we try again (maximum 1000 times)
+ *        - if we have not successed, we state that the board is the closest one we have generated
+     */
     public void generate() {        
         if (this.nbGridGenerated < 1000) {
             fillDiagonal();
@@ -124,6 +165,9 @@ public class GameBoard {
         this.board = bestBoard;
     }
 
+    /**
+     * @return the board as a formatted string
+     */
     @Override
     public String toString() {
         String res = "";
@@ -137,19 +181,16 @@ public class GameBoard {
         return res;
     }
 
+    /**
+     * Display the board as a formatted string
+     */
     public void displayBoard(){
-        String res = "";
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                res += board[i][j] + " ";
-            }
-            res += "\n";
-        }
-        res += "";
-
-        System.out.println(res);
+        System.out.println(this);
     }
 
+    /**
+     * Display the solved board as a formatted string
+     */
     public void displaySolvedBoard(){
         String res = "";
         for (int i = 0; i < 9; i++) {
@@ -162,12 +203,20 @@ public class GameBoard {
         System.out.println(res);
     }
 
+    /**
+     * fill the 3 diagonal miniGrid box (3*3 squares)
+     */
     private void fillDiagonal() {
         for (int i = 0; i <9; i+=3) {
             fillBox(i,i);
         }
     }
 
+    /**
+     * Fill a 3*3 box
+     * @param row the box beginning row
+     * @param col the box beginning col
+     */
     private void fillBox(int row, int col) {
         int num = getRandomNumber();
         for (int i = 0; i <3; i++) {
@@ -180,6 +229,12 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Recursive function to fill all the empty values of the board
+     * @param row the row to start filling from
+     * @param col the col to start filling from
+     * @return true if the board is filled
+     */
     private boolean fillRemaining(int row, int col) {
         // At the end of the row, we go back
         // At the beginning of the next row
@@ -215,6 +270,9 @@ public class GameBoard {
         return false;
     }
 
+    /**
+     * @return A random cell of the grid as a 2D point
+     */
     public Point getRandomCell() {
         int i = getRandomNumber()-1;
         int j = getRandomNumber()-1;
@@ -235,6 +293,11 @@ public class GameBoard {
         return new Point(i,j);
     }
 
+    /**
+     * @param num the number to test
+     * @param row the row to check into
+     * @return true if the number is in the row
+     */
     private boolean isInRow(int num, int row) {
         boolean res = false;
         for (int i = 0; i < 9; i++) {
@@ -246,6 +309,11 @@ public class GameBoard {
         return res;
     }
 
+    /**
+     * @param num the number to test
+     * @param col the col to check into
+     * @return true if the number is in the col
+     */
     private boolean isInCol(int num, int col) {
         boolean res = false;
         for (int i = 0; i < 9; i++) {
@@ -257,6 +325,12 @@ public class GameBoard {
         return res;
     }
 
+    /**
+     * @param num the number to place
+     * @param row the row to place into
+     * @param col the col to place into
+     * @return true if we can place the number at the given cell
+     */
     public boolean canPlace(int num, int row, int col) {
         boolean res = true;
         if(isInRow(num, row) || isInCol(num, col) || isInBox(num, row-row%3, col-col%3)){
@@ -266,6 +340,12 @@ public class GameBoard {
         return res;
     }
 
+    /**
+     * @param num the number to test
+     * @param row the row to check into
+     * @param col the col to check into
+     * @return true if the number is in the miniGrid box
+     */
     private boolean isInBox(int num, int row, int col) {
         boolean res = false;
         for (int i = 0; i <3; i++) {
@@ -279,10 +359,16 @@ public class GameBoard {
         return res;
     }
 
+    /**
+     * @return a random number from 1 to 9
+     */
     private int getRandomNumber() {
         return (int) Math.floor((Math.random()*9 +1));
     }
 
+    /**
+     * @return the numbers of value to remove from the grid based on difficulty
+     */
     private int getNumbersToRemove() {
         int n;
         switch (difficulty){
@@ -303,6 +389,15 @@ public class GameBoard {
         return n;
     }
 
+    /**
+     * Principle :
+     *     - We remove a number
+     *     - We check if the solution is still unique without the removed number
+     *     - If it is, we continue to remove numbers
+     *     - Elsewise we put back the number and stop trying to remove numbers
+     * @param nb number of values to remove
+     * @return the numbers of values removed
+     */
     private int removeNumbers(int nb) {
         boolean canContinue = true;
         while(canContinue) {
@@ -325,6 +420,12 @@ public class GameBoard {
         return nb;
     }
 
+    /**
+     * Static method to compare two boards
+     * @param b1 the first board to compare
+     * @param b2 the second board to compare
+     * @return true if the boards are equals
+     */
     public static boolean areEquals(GameBoard b1, GameBoard b2) {
         for (int i=0; i<9; i++) {
             for (int j =0; j<9; j++) {
@@ -336,6 +437,9 @@ public class GameBoard {
         return true;
     }
 
+    /**
+     * @return true if ther is only one solution to the board
+     */
     public boolean isUniqueSolution() {
         SudokuSolver solver = new SudokuSolver(new GameBoard(board));
 

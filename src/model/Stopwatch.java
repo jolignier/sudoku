@@ -16,11 +16,17 @@ import java.util.Properties;
  * Date  20/04/2020
  */
 
+/**
+ * Represent a basic stopwatch to watch out time spent between two calls
+ */
 public class Stopwatch implements ActionListener {
 
-    private int hours,minutes, seconds;
+    private int hours, minutes, seconds;
     private Timer timer;
 
+    /**
+     * Default constructor
+     */
     public Stopwatch() {
         this.hours = 0;
         this.minutes = 0;
@@ -28,6 +34,10 @@ public class Stopwatch implements ActionListener {
         timer = new Timer(1000, this);
     }
 
+    /**
+     * Action to be performed each second
+     * @param actionEvent the action event
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         seconds++;
@@ -41,18 +51,30 @@ public class Stopwatch implements ActionListener {
         }
     }
 
+    /**
+     * Start the timer
+     */
     public void start(){
         timer.start();
     }
 
+    /**
+     * stop the timer
+     */
     public void stop(){
         timer.stop();
     }
 
+    /**
+     * @return true if the timer is running
+     */
     public boolean isRunning() {
         return timer.isRunning();
     }
 
+    /**
+     * reset the timer to 0
+     */
     public void reset(){
         if (timer.isRunning())
             stop();
@@ -61,6 +83,9 @@ public class Stopwatch implements ActionListener {
         this.seconds = 0;
     }
 
+    /**
+     * @return a formatted string representing time as HH:MM:SS
+     */
     public String getTime() {
         String res = "";
         DecimalFormat formatter = new DecimalFormat("00");
