@@ -1,22 +1,12 @@
 package model;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.beans.value.ObservableValueBase;
-
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.Properties;
 
 /**
- * @author Ipro
- * Date  20/04/2020
- */
-
-/**
+ * Date  20/04/2020 <br>
  * Represent a basic stopwatch to watch out time spent between two calls
  */
 public class Stopwatch implements ActionListener {

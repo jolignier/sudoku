@@ -1,15 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- * @author Ipro
- * Date  20/04/2020
- */
+import java.util.ArrayList;
 
+/**
+ * Date  20/04/2020 <br>
+ * Represents a sudoku gameboard with a unique solution. <br>
+ * The gameboard have two different board, representing each state :
+ * <ul>
+ *     <li>"Current" : represent the current game with given numbers and player's input ones</li>
+ *     <li>"Solved" : represent the solution of the current board</li>
+ * </ul>
+ */
 public class GameBoard {
 
     private int[][] board;
@@ -452,5 +453,54 @@ public class GameBoard {
         GameBoard secondSolution = solver.getBoard();
 
         return areEquals(firstSolution, secondSolution);
+    }
+
+    /**
+     * Calculate the Branch difficulty score of the board
+     * from 0 to 254 : easiest to hardest
+     * @return branch difficulty score
+     */
+    public int BranchDifficultyScore() {
+        int[][] tempGrid = new int[9][9];
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                tempGrid[i][j] = this.board[i][j];
+            }
+        }
+
+        ArrayList<ArrayList<Integer>> empty = new ArrayList<>();
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (tempGrid[i][j] == 0) {
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(i*9 + j);
+
+                    for (int num = 0; num < 9; num++) {
+                        if (canPlace(num, i, j)) {
+                            temp.add(num);
+                        }
+                    }
+                    empty.add(temp);
+                }
+            }
+        }
+
+        int minIndex = 0;
+        int check = empty.size();
+        for (int i = 0; i < check; i++) {
+            if (empty.get(i).size() < empty.get(minIndex).size()) {
+                 minIndex = i;
+            }
+        }
+        int branchFactor = empty.get(minIndex).size();
+
+        int factor = (int)Math.pow(branchFactor-2, 2);
+        int emptyCells = empty.size();
+
+        int score = factor*100 + emptyCells;
+
+        return score;
     }
 }

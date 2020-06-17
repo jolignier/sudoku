@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"model","l":"GameBoard"},{"p":"view.language","l":"LanguageManager"},{"p":"controller","l":"MainWindowController"},{"p":"model","l":"Point"},{"p":"model","l":"Stopwatch"},{"p":"<Unnamed>","l":"Sudoku"},{"p":"model","l":"SudokuSolver"}]

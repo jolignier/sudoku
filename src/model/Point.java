@@ -1,11 +1,7 @@
 package model;
 
 /**
- * @author Ipro
- * Date  21/04/2020
- */
-
-/**
+ * Date  21/04/2020 <br>
  *  Represent a simple 2D point
  */
 public class Point {

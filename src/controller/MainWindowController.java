@@ -3,7 +3,6 @@ package controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,13 +23,17 @@ import view.language.LanguageManager;
 import java.net.URL;
 import java.util.*;
 
-
+/**
+ * Controller of the Main window
+ * Binds every interaction from the player to its corresponding
+ * GUI modifications as well as game modifications
+ */
 public class MainWindowController implements Initializable {
 
 /*  *********************************************************************
     *******************   LABELS AND CHOICEBOXES   **********************
     *********************************************************************
- */
+*/
     @FXML
     private ComboBox<String> difficultyChoice;
     @FXML
@@ -57,7 +60,7 @@ public class MainWindowController implements Initializable {
 /*  *********************************************************************
     **********************   NUMBER BUTTONS   ***************************
     *********************************************************************
- */
+*/
     @FXML
     private Button nb1;
     @FXML
@@ -80,7 +83,7 @@ public class MainWindowController implements Initializable {
 /*  *********************************************************************
     **********************   CONTROL BUTTONS   **************************
     *********************************************************************
- */
+*/
     @FXML
     private Button newGameButton;
 
@@ -94,7 +97,10 @@ public class MainWindowController implements Initializable {
     @FXML
     private ToggleButton togglePause;
 
-
+/*  *********************************************************************
+    *************************   GUI ICONS   *****************************
+    *********************************************************************
+*/
     private int icon_size = 60;
 
     private ImageView idea_base_icon = new ImageView("view/images/idea.png");
@@ -104,7 +110,7 @@ public class MainWindowController implements Initializable {
 /*  *********************************************************************
     **********************   SUDOKU GRID GUI   **************************
     *********************************************************************
- */
+*/
     @FXML
     private GridPane root;
 
@@ -115,7 +121,7 @@ public class MainWindowController implements Initializable {
 /*  *********************************************************************
     **********************   EVENT LISTENERS   **************************
     *********************************************************************
- */
+*/
 
     private ChangeListener<Pair<String,String>> languageChoiceListener;
     private ChangeListener<String> difficultyChoiceListener;
@@ -140,6 +146,11 @@ public class MainWindowController implements Initializable {
     *********************************************************************
  */
 
+    /**
+     * @param url default URL
+     * @param resourceBundle default resourceBundle
+     * Initialize every GUI components
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Create and bind event listeners to each ComboBox
         this.createEventListeners();
@@ -168,6 +179,9 @@ public class MainWindowController implements Initializable {
         timeline.play();
     };
 
+    /**
+     * Modify choice box display to include Icons with text elements
+     */
     private void modifyChoiceBoxDisplay() {
         languageChoice.setCellFactory(new Callback<ListView<Pair<String, String>>, ListCell<Pair<String, String>>>() {
             @Override
@@ -187,13 +201,13 @@ public class MainWindowController implements Initializable {
                 };
             }
         });
-        languageChoice.setButtonCell(new ListCell<Pair<String,String>>(){
+        languageChoice.setButtonCell(new ListCell<>() {
             @Override
             protected void updateItem(Pair<String, String> item, boolean empty) {
                 super.updateItem(item, empty);
                 if (item != null) {
-                    setText(languageManager.get("language."+item.getKey()));
-                    ImageView icon = new ImageView("view/language/flags/"+item.getValue());
+                    setText(languageManager.get("language." + item.getKey()));
+                    ImageView icon = new ImageView("view/language/flags/" + item.getValue());
                     icon.setFitWidth(40);
                     icon.setFitHeight(40);
                     setGraphic(icon);
@@ -202,58 +216,57 @@ public class MainWindowController implements Initializable {
         });
     }
 
+    /**
+     * Create event listeners for each choiceBox
+     */
     private void createEventListeners() {
 
-        languageChoiceListener = new ChangeListener<Pair<String, String>>() {
-            @Override
-            public void changed(ObservableValue<? extends Pair<String, String>> observableValue, Pair<String, String> old_value, Pair<String, String> new_value) {
-                if (old_value.getKey() != new_value.getKey()) {
-                    String locale = languageManager.getLocale(new_value.getKey());
-                    languageManager = new LanguageManager(locale);
-                    applyLanguage(languageManager);
-                }
+        languageChoiceListener = (observableValue, old_value, new_value) -> {
+            if (old_value.getKey() != new_value.getKey()) {
+                String locale = languageManager.getLocale(new_value.getKey());
+                languageManager = new LanguageManager(locale);
+                applyLanguage(languageManager);
             }
         };
 
-        difficultyChoiceListener = new ChangeListener<String>() {
-            public void changed(ObservableValue ov, String old_value, String new_value) {
-                if (old_value != new_value) {
-                    String key = languageManager.getKey(new_value);
-                    // Remove the "difficulty."
-                    key = key.substring(11);
-                }
+        difficultyChoiceListener = (ov, old_value, new_value) -> {
+            if (old_value != new_value) {
+                String key = languageManager.getKey(new_value);
+                // Remove the "difficulty."
+                key = key.substring(11);
             }
         };
 
-        themeChoiceListener = new ChangeListener<String>() {
-            public void changed(ObservableValue ov, String old_value, String new_value) {
-                if (old_value != new_value) {
-                    String old_key = languageManager.getKey(old_value);
-                    String new_key = languageManager.getKey(new_value);
+        themeChoiceListener = (ov, old_value, new_value) -> {
+            if (old_value != new_value) {
+                String old_key = languageManager.getKey(old_value);
+                String new_key = languageManager.getKey(new_value);
 
-                    // remove the "theme."
-                    old_key = old_key.substring(6);
-                    new_key = new_key.substring(6);
+                // remove the "theme."
+                old_key = old_key.substring(6);
+                new_key = new_key.substring(6);
 
-                    if (new_key.substring(0,4).equals("dark") && old_key.substring(0,5).equals("light") ){
-                        // Going from a light theme to a dark theme,
-                        // So we need to change the icons for better contrast
-                        hint.setGraphic(idea_white_icon);
+                if (new_key.substring(0,4).equals("dark") && old_key.substring(0,5).equals("light") ){
+                    // Going from a light theme to a dark theme,
+                    // So we need to change the icons for better contrast
+                    hint.setGraphic(idea_white_icon);
 
-                    } else if (new_key.substring(0,5).equals("light") && old_key.substring(0,4).equals("dark")) {
-                        // going from a dark theme to a light theme
-                        hint.setGraphic(idea_base_icon);
-                    }
-
-                    // remove the old style and apply the new one
-                    root.getStyleClass().remove(old_key);
-                    root.getStyleClass().add(new_key);
+                } else if (new_key.substring(0,5).equals("light") && old_key.substring(0,4).equals("dark")) {
+                    // going from a dark theme to a light theme
+                    hint.setGraphic(idea_base_icon);
                 }
+
+                // remove the old style and apply the new one
+                root.getStyleClass().remove(old_key);
+                root.getStyleClass().add(new_key);
             }
         };
     }
 
-
+    /**
+     * Apply the translated values of each GUI labels for a new given language
+     * @param lang the language to apply
+     */
     private void applyLanguage(LanguageManager lang) {
 
         // Remove Listeners to avoid looping indefinitely while modifying each ChoiceBox
@@ -328,6 +341,10 @@ public class MainWindowController implements Initializable {
         themeChoice.getSelectionModel().selectedItemProperty().addListener(themeChoiceListener);
     }
 
+    /**
+     * Action to perform when the player click on a sudoku cell
+     * @param event the mouse clicked event
+     */
     @FXML
     private void onSudokuCellClick(MouseEvent event){
         if (!togglePause.isSelected()) {
@@ -344,8 +361,11 @@ public class MainWindowController implements Initializable {
                 clearNumber();
             }
         }
-
     }
+
+    /**
+     * Action to perform when the player click on the new Game button
+     */
     @FXML
     private void onNewGameClick(){
         // Clear selected cell
@@ -366,7 +386,10 @@ public class MainWindowController implements Initializable {
             }
         }
     }
-
+    /**
+     * Create a new Game by creating and displaying new gameboard
+     * as well as resetting and starting the timer.
+     */
     private void newGame() {
         // Create new Sudoku board
         String difficulty = this.languageManager.getKey(difficultyChoice.getSelectionModel().getSelectedItem());
@@ -382,6 +405,10 @@ public class MainWindowController implements Initializable {
         this.newGameButton.setText(languageManager.get("give_up"));
     }
 
+    /**
+     * Ask the player if he wants to see the solution when giving up
+     * @return the player answer type to the question
+     */
     private int askForGiveUp() {
         int answer =2;
 
@@ -416,6 +443,10 @@ public class MainWindowController implements Initializable {
         return answer;
     }
 
+    /**
+     * Give up the game and display or not the solution based on the player answer
+     * @param answer the player answer type to the question
+     */
     private void giveUp(int answer) {
         time.reset();
         this.isPlaying = false;
@@ -427,6 +458,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Action to perform when the player win.
+     */
     private void win() {
         displayWinPopup();
         this.newGameButton.setText(languageManager.get("new_game"));
@@ -434,6 +468,9 @@ public class MainWindowController implements Initializable {
         isPlaying = false;
     }
 
+    /**
+     * Display a congratulation popup with player's performance time
+     */
     private void displayWinPopup() {
         String themeClass = languageManager.getKey(themeChoice.getSelectionModel().getSelectedItem());
         themeClass = themeClass.substring(6);
@@ -446,6 +483,9 @@ public class MainWindowController implements Initializable {
         dialog.show();
     }
 
+    /**
+     * Display a popup to indicate the player he completed the grid with at least one wrong answer
+     */
     private void displayCompleteButWrongPopup() {
         String themeClass = languageManager.getKey(themeChoice.getSelectionModel().getSelectedItem());
         themeClass = themeClass.substring(6);
@@ -458,6 +498,9 @@ public class MainWindowController implements Initializable {
         dialog.show();
     }
 
+    /**
+     * Display the solution of the current gameboard
+     */
     private void displaySolution() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -471,6 +514,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Clear the grid with empty values
+     */
     private void clearGrid(){
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -482,6 +528,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * display the initial gameboard
+     */
     private void displayBoard() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -497,6 +546,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * @return the coordinates of the 9x9 clicked cell
+     */
     private Point getAbsoluteCoordinates() {
         int row = (GridPane.getRowIndex(selectedCell.getParent()) == null) ? 0 : GridPane.getRowIndex(selectedCell.getParent());
         int col = (GridPane.getColumnIndex(selectedCell.getParent()) == null) ? 0 : GridPane.getColumnIndex(selectedCell.getParent());
@@ -506,6 +558,11 @@ public class MainWindowController implements Initializable {
         return new Point(row*3 + miniGridNode_row, col*3 + miniGridNode_col);
     }
 
+    /**
+     * @param row the row of the cell
+     * @param col the column of the cell
+     * @return the label of the given cell coordinates
+     */
     private Label getCellLabel(int row, int col) {
         for(Node miniGridNode : sudokuGrid.getChildren()) {
             if (miniGridNode.getTypeSelector().equals("GridPane")) {
@@ -526,6 +583,9 @@ public class MainWindowController implements Initializable {
         return null;
     }
 
+    /**
+     * Action to perform when the player enable or disable the error detection functionnality
+     */
     @FXML
     private void onToggleErrorDisplay() {
         if (toggleError.isSelected()) {
@@ -550,6 +610,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Action to perform when the player enable or disable the eraser
+     */
     @FXML
     private void onToggleEraserClick() {
         if (!togglePause.isSelected()) {
@@ -562,12 +625,18 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Action to perform when the player enable or disable the pencil
+     */
     @FXML
     private void onTogglePencilClick() {
         if (toggleEraser.isSelected())
             toggleEraser.setSelected(false);
     }
 
+    /**
+     * Action to perform when the player enable or disable the pause
+     */
     @FXML
     private void onTogglePauseClick(){
         if (togglePause.isSelected()) {
@@ -577,6 +646,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Action to perform when the player clicks on the hint buton
+     */
     @FXML
     private void onHintClick() {
         if (!togglePause.isSelected() && isPlaying) {
@@ -591,6 +663,10 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Update the little mark of the selected cell with the given number
+     * @param nb the little mark to add/remove
+     */
     private void updateMark(int nb) {
         int mark_col = (nb-1)%3;
         int mark_row = (nb-1)/3;
@@ -622,6 +698,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Clear all little marks of the selected cell
+     */
     private void clearMarks() {
         int row = (GridPane.getRowIndex(selectedCell) == null) ? 0 : GridPane.getRowIndex(selectedCell);
         int col = (GridPane.getColumnIndex(selectedCell) == null) ? 0 : GridPane.getColumnIndex(selectedCell);
@@ -639,6 +718,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Clear the number label of the selected cell
+     */
     private void clearNumber() {
         if (this.selectedCell != null) {
             ((Label)selectedCell).setText("");
@@ -648,6 +730,10 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Action to perform when a 1-9 number is pressed
+     * @param nb the number pressed
+     */
     private void numberPressed(int nb) {
         if (!togglePause.isSelected() && selectedCell != null) {
             if (togglePencil.isSelected()) {
@@ -682,43 +768,74 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Action to perform when the player clicked on the GUI number 1
+     */
     @FXML
     private void onNb1Click() {
         this.numberPressed(1);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 2
+     */
     @FXML
     private void onNb2Click() {
         this.numberPressed(2);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 3
+     */
     @FXML
     private void onNb3Click() {
         this.numberPressed(3);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 4
+     */
     @FXML
     private void onNb4Click() {
         this.numberPressed(4);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 5
+     */
     @FXML
     private void onNb5Click() {
         this.numberPressed(5);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 6
+     */
     @FXML
     private void onNb6Click() {
         this.numberPressed(6);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 7
+     */
     @FXML
     private void onNb7Click() {
         this.numberPressed(7);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 8
+     */
     @FXML
     private void onNb8Click() {
         this.numberPressed(8);
     }
+    /**
+     * Action to perform when the player clicked on the GUI number 9
+     */
     @FXML
     private void onNb9Click() {
         this.numberPressed(9);
     }
 
+    /**
+     * Action to perform when the player pressed a keyboard button
+     * Binds every button to corresponding action
+     */
     @FXML
     private void onKeyBoardPressed(KeyEvent event) {
         switch (event.getCode()) {

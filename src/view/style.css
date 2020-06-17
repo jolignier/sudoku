@@ -82,6 +82,20 @@
     ***************************************************************
 */
 
+.light-blue .settings Label, .light-blue .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-blue .settings ComboBox .list-view .list-cell:focused {
+    -fx-background-color: rgb(254,254,254);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-blue .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(19, 110, 185);
+    -fx-text-fill: white;
+}
+
 .light-blue #toggleError {
     -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(31, 143, 232) 70%, rgb(31, 143, 232) 100%);
     -fx-text-fill: rgb(44, 62, 80);
@@ -159,6 +173,20 @@
     ***************************************************************
 */
 
+.light-green .settings Label, .light-green .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-green .settings ComboBox .list-view .list-cell:focused {
+    -fx-background-color: rgb(254,254,254);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-green .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(19, 185, 19);
+    -fx-text-fill: white;
+}
+
 .light-green #toggleError {
     -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(33, 232, 33) 70%, rgb(33, 232, 33) 100%);
     -fx-text-fill: rgb(44, 62, 80);
@@ -214,11 +242,6 @@
     -fx-background-color: rgba(19, 185, 19, 0.15);
 }
 
-.light-red .sudokuGrid .sudokuMiniGrid .selected {
-    -fx-text-fill: rgb(185, 19, 19);
-    -fx-background-color: rgba(185, 19, 19, 0.15);
-}
-
 .light-green.dialog, .light-green.dialog *.header-panel,
 .light-green.dialog > *.button-bar > *.container > Button {
     -fx-border-color: rgb(191, 212, 191);
@@ -240,6 +263,20 @@
     **********************   LIGHT RED    *************************
     ***************************************************************
 */
+
+.light-red .settings Label, .light-red .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-red .settings ComboBox .list-view .list-cell:focused {
+    -fx-background-color: rgb(254,254,254);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-red .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(185, 19, 19);
+    -fx-text-fill: white;
+}
 
 .light-red #toggleError {
     -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 33, 33) 70%, rgb(232, 33, 33) 100%);
@@ -318,6 +355,20 @@
     ***************************************************************
 */
 
+.light-orange .settings Label, .light-orange .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-orange .settings ComboBox .list-view .list-cell:focused {
+    -fx-background-color: rgb(254,254,254);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-orange .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(185, 102, 19);
+    -fx-text-fill: white;
+}
+
 .light-orange #toggleError {
     -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 133, 33) 70%, rgb(232, 133, 33) 100%);
     -fx-text-fill: rgb(44, 62, 80);
@@ -394,6 +445,20 @@
     *********************   LIGHT PINK    *************************
     ***************************************************************
 */
+
+.light-pink .settings Label, .light-pink .settings ComboBox .list-cell {
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-pink .settings ComboBox .list-view .list-cell:focused {
+    -fx-background-color: rgb(254,254,254);
+    -fx-text-fill: rgb(44, 62, 80);
+}
+
+.light-pink .settings ComboBox .list-view .list-cell:hover {
+    -fx-background-color: rgb(185, 19, 143);
+    -fx-text-fill: white;
+}
 
 .light-pink #toggleError {
     -fx-background-color: linear-gradient(to left, transparent 0%, transparent 70%, rgb(232, 33, 182) 70%, rgb(232, 33, 182) 100%);
@@ -883,8 +948,9 @@
     -fx-text-fill: rgb(238, 93, 202);
 }
 .dark-pink .settings ComboBox .list-view .list-cell {
-    -fx-background-color: rgb(51,51,51);
-}
+     -fx-background-color: rgb(51,51,51);
+ }
+
 .dark-pink .settings ComboBox .list-view .list-cell:hover {
     -fx-background-color: rgb(185, 19, 143);
     -fx-text-fill: white;

@@ -1,10 +1,13 @@
 package model;
 
 /**
- * @author Ipro
- * Date  20/04/2020
+ * Date  20/04/2020 <br>
+ * Represent a Sudoku solver, wich return a solution to a given board with two input method:
+ * <ul>
+ *     <li>Ascendent : fill the cell with numbers from 1 to 9 in ascendent order</li>
+ *     <li>Descendant : fill the cell with numbers from 9 to 1 in descendant order</li>
+ * </ul>
  */
-
 public class SudokuSolver {
 
     private GameBoard board;
